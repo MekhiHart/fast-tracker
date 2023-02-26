@@ -1,5 +1,5 @@
 import { useState  } from 'react'
-import {BrowserRouter as Router, Route, Switch, Link} from "react-router-dom"
+import {BrowserRouter as Router, Route, Switch, Link, useHistory} from "react-router-dom"
 
 
 import './App.css'
@@ -42,6 +42,11 @@ const db = getFirestore(app);
 function App() {
   const [userType,setUserType] = useState("")
   const [userId, setUserId] = useState("")
+  const [userData, setUserData] = useState({})
+  const history = useHistory()
+
+  // * Sign in props
+  
 
   function handleUserType(type:string):void{
     // either attendee or volunteer
@@ -52,14 +57,18 @@ function App() {
     event.preventDefault() // * prevents user submission when user clicks on sign in page
     // ! Handle fetch request
 
-    const docRef = doc(db, "attendees", "8NYbFbt0oLMZqlGTvXN3"); 
+    const docRef = doc(db, "attendees", id); 
     const docSnap = await getDoc(docRef);
-
-    if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data());
-    } else {
+    console.log("data: ", docSnap.data())
+    if (docSnap.exists()) { // ! user sign in successful :)
+      const data = docSnap.data()
+      setUserData(userData)
+      // history.push("/Attendee")
+      
+      console.log("Sign In Successful")
+    } else {// !user sign in unsuccessful :(
       // doc.data() will be undefined in this case
-      console.log("No such document!");
+      console.log("Sign In Unsuccesful")
     }
   }
 
@@ -81,7 +90,7 @@ function App() {
           </Route>
 
           <Route exact path="/Attendee">
-            <Attendee/>
+            <Attendee />
           </Route>
 
           <Route exact path="/Volunteer">
@@ -90,6 +99,7 @@ function App() {
 
           <Route exact path="/SignIn">
             <SignIn handleSignIn={handleSignIn} handleUserId={handleUserId} userId={userId}/>
+            
           </Route>
         </Switch>
 
