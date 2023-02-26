@@ -42,9 +42,13 @@ const app = initializeApp(firebaseConfig)
 const db = getFirestore(app);
 
 function App() {
+
+  // * States
   const [userType,setUserType] = useState("")
   const [userId, setUserId] = useState("")
   const [userData, setUserData] = useState({})
+  const [isQrScannerOpen, setIsQrScannerOpen] = useState(false)
+  // const [current]
   // let location = useLocation()
 
 
@@ -56,11 +60,14 @@ function App() {
     setUserType(type)
   }
 
-
-
   function handleUserId(event:any){ // calls whenever user types in on submission box in SignIn component
     const {value} = event.target
     setUserId(value)
+  }
+
+  function handleQrScanner(){
+    console.log("Handle qrScanner")
+    setIsQrScannerOpen(prevState => !prevState)
   }
 
   return (
@@ -70,13 +77,14 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage handleUserType={handleUserType}/>} />
           <Route  path="/Attendee" element={<Attendee userData={userData} />}/>
-          <Route path="/Volunteer" element={<Volunteer userData={userData}/>}/>
+          <Route path="/Volunteer" element={<Volunteer userData={userData} isQrScannerOpen={isQrScannerOpen} handleQrScanner={handleQrScanner}/>}/>
           <Route path="/SignIn" element={<SignIn 
                                           db={db} 
                                           handleUserId={handleUserId}
                                           userId={userId} 
                                           userDataState={[userData,setUserData]}
-                                          userType={userType}/>}/>
+                                          userType={userType}/>}
+                                          />
         </Routes>
 
         <div id="reader"></div>

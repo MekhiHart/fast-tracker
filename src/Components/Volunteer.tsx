@@ -1,20 +1,36 @@
 import { Html5QrcodeScanner } from "html5-qrcode"
+import { useEffect, useState } from "react"
 export default function Volunteer(props:any){
-    function onScanSuccess(result:string) {
-        console.log("result: ", result)
-    }
 
-    function onScanFailure(error:any) :void {
-      console.log("error")
-    }
-
-    let qrScanner = new Html5QrcodeScanner(
+    const {handleQrScanner, isQrScannerOpen} = props
+    const [scanner,setScanner] = useState(    new Html5QrcodeScanner(
       "reader",
       { fps: 10, qrbox: {width: 250, height: 250}},
       false
-    )
-    
-    qrScanner.render(onScanSuccess,onScanFailure)
+    ) )
+
+
+
+    function onScanSuccess(result:string) : void {
+        console.log("result: ", result)
+        // close camera
+        scanner.pause()
+        handleQrScanner()
+        
+        // make fetch request here
+    }
+
+    function turnOnScanner(){
+      scanner.resume()
+      handleQrScanner()
+    }
+
+
+
+    useEffect( () =>{
+      scanner.render(onScanSuccess, () => {})
+
+    },[])
 
     const {userData} = props
     const {firstname,lastname} = userData
@@ -23,7 +39,7 @@ export default function Volunteer(props:any){
     return(
         <>
             <h1>{firstname} {lastname}</h1>
-            
+            {isQrScannerOpen && <button onClick={turnOnScanner}>Scan Again?</button>}
         </>
     )
 }
