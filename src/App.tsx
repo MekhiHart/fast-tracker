@@ -48,27 +48,29 @@ function App() {
   const [userId, setUserId] = useState("")
   const [userData, setUserData] = useState({})
   const [isQrScannerOpen, setIsQrScannerOpen] = useState(false)
+  const [currentMode, setCurrentMode] = useState()
   // const [current]
   // let location = useLocation()
-
-
-  // * Sign in props
   
-
-  function handleUserType(type:string):void{
-    // either attendee or volunteer
-    setUserType(type)
-  }
-
+  // * handleUserId Props
   function handleUserId(event:any){ // calls whenever user types in on submission box in SignIn component
     const {value} = event.target
     setUserId(value)
-  }
+  } //handleUserId
+  
+  
+  // * HomePage Component Props
+  function handleUserType(type:string):void{
+    // either attendee or volunteer
+    setUserType(type)
+  } // handleUserType
 
+
+  // * Volunteer Component Props
   function handleQrScanner(){
     console.log("Handle qrScanner")
     setIsQrScannerOpen(prevState => !prevState)
-  }
+  } //handleQrScanner
 
   return (
 

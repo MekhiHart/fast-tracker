@@ -9,8 +9,6 @@ export default function Volunteer(props:any){
       false
     ) )
 
-
-
     function onScanSuccess(result:string) : void {
         console.log("result: ", result)
         // close camera
