@@ -40,3 +40,12 @@
 .read-the-docs {
   color: #888;
 }
+
+.navbar{
+  position:absolute;
+  top: 0px;
+  left: 0px;
+
+  display: flex;
+  flex-direction: column;
+}

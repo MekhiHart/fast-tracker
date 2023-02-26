@@ -7,7 +7,7 @@ import './App.css'
 import HomePage from './Components/HomePage'
 import Volunteer from './Components/Volunteer'
 import Attendee from './Components/Attendee'
-
+import NavBar from "./Components/NavBar"
 /* 
 Notes
 Router encapsulate the entire page
@@ -19,13 +19,12 @@ Router encapsulate the entire page
 
 function App() {
 
-  const [currentRoute, setCurrentRoute] = useState("/")
-
   return (
     <Router>
       <div className="App">
-        <h1>Homepage</h1>
-        <Link to="/">Home Page</Link>
+        <NavBar/>
+
+        
 
         <Switch>
           <Route exact path="/"> 
