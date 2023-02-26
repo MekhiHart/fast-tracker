@@ -41,11 +41,16 @@
   color: #888;
 }
 
-.navbar{
-  position:absolute;
-  top: 0px;
-  left: 0px;
-
-  display: flex;
-  flex-direction: column;
+.homepage--button--container button {
+  background-color: #ADD8E6; 
 }
+
+#back--button{
+  background-color: #ADD8E6;
+}
+
+button{
+  margin:20px;
+  background-color: #ADD8E6;
+}
+

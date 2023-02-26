@@ -67,6 +67,7 @@ export default function Volunteer(props:any){
   function generateModeButtons(){
     return(
       <>
+        <h3>Modes: </h3>
         <button onClick={ () => {
           console.log("Change to register mode")
           setCurrentMode("Register")

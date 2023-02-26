@@ -4,11 +4,11 @@ export default function HomePage(props:any){
     
     return(
         <div>
-            <h1>Hello User!</h1>
-            <h2>Are you a.... </h2>
+            <h2>Hello User!</h2>
+            <h3>Are you a.... </h3>
             
 
-            <div className="homepage--choice">
+            <div className="homepage--button--container">
                 <button onClick={() => handleUserType("attendee")}><Link to="/SignIn">Attendee</Link></button>
                 <button onClick={() => handleUserType("volunteer")}><Link to="/SignIn">Volunteer</Link></button>
             </div>

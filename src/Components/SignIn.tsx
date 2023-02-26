@@ -22,11 +22,8 @@ export default function SignIn(props:any){
           
           navigate(userType === "attendee" ? "/Attendee" : "/Volunteer")
 
-          console.log("Sign In Successful")
-
         } else {// !user sign in unsuccessful :(
           // doc.data() will be undefined in this case
-          console.log("Sign In Unsuccesful")
         }
       }
     const {userId, handleUserId,db, userType, setUserData} = props
@@ -34,10 +31,11 @@ export default function SignIn(props:any){
     const navigate = useNavigate()
     return(
         <>
-            <h1>Sign In</h1>
+            <h2>Sign In</h2>
             <form onSubmit={(event) => handleSignIn(event, userId,userType)}>
-                <input value={userId} type="text" onChange={(event) => handleUserId(event)}  ></input>
+                <input placeholder="Input ID" value={userId} type="text" onChange={(event) => handleUserId(event)}  ></input>
             </form>
+            <button id="back--button" onClick={() => navigate("/")}>Back</button>
         </>
         
 
