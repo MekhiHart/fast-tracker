@@ -29,13 +29,9 @@ export default function SignIn(props:any){
           console.log("Sign In Unsuccesful")
         }
       }
-    const {userId, handleUserId,db, userDataState, userType} = props
-    const [userData,setUserData] = userDataState
+    const {userId, handleUserId,db, userType, setUserData} = props
 
     const navigate = useNavigate()
-
-    
-
     return(
         <>
             <h1>Sign In</h1>

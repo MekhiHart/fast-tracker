@@ -11,13 +11,7 @@ import SignIn from './Components/SignIn'
 // * Firebase imports
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { doc, getDoc } from "firebase/firestore";
 
-
-
-
-// const { getFirestore, Timestamp, FieldValue } = require('firebase-admin/firestore');
-// import { doc, getDoc } from "firebase/firestore";
 
 /* 
 Notes
@@ -51,6 +45,12 @@ function App() {
   const [currentMode, setCurrentMode] = useState()
   // const [current]
   // let location = useLocation()
+
+  // * enum for scanner modes
+  enum Modes{
+    Register,
+    Merch,
+  }
   
   // * handleUserId Props
   function handleUserId(event:any){ // calls whenever user types in on submission box in SignIn component
@@ -79,12 +79,12 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage handleUserType={handleUserType}/>} />
           <Route  path="/Attendee" element={<Attendee userData={userData} />}/>
-          <Route path="/Volunteer" element={<Volunteer userData={userData} isQrScannerOpen={isQrScannerOpen} handleQrScanner={handleQrScanner}/>}/>
+          <Route path="/Volunteer" element={<Volunteer userData={userData} isQrScannerOpen={isQrScannerOpen} handleQrScanner={handleQrScanner} db={db}/>}/>
           <Route path="/SignIn" element={<SignIn 
                                           db={db} 
                                           handleUserId={handleUserId}
                                           userId={userId} 
-                                          userDataState={[userData,setUserData]}
+                                          setUserData={setUserData}
                                           userType={userType}/>}
                                           />
         </Routes>
