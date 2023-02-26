@@ -11,8 +11,6 @@ export default function Volunteer(props:any){
 
     console.log("Current Mode: ", currentMode)
 
-    // Do different modes here
-
     const collectionName = "attendees"
     const docRef = doc(db, collectionName, id); 
     const docSnap = await getDoc(docRef);
@@ -25,24 +23,30 @@ export default function Volunteer(props:any){
     console.log("Current Mode: ", currentMode)
 
     if (currentMode === Modes.Register ){ // if current mode is register
-      
-      const newData = {
-        ...priorData,
-        hasAttended:true,
-        eventpoints: priorEventPoints += 1
+      if (priorAttendanceStatus === false){
+        const newData = {
+          ...priorData,
+          hasAttended:true,
+          eventpoints: priorEventPoints += 1
+        }
+        await updateDoc(docRef, newData); // * marks attendee as present, and adds 1 point to attendee
+        console.log("attendee registered!")
       }
-  
-      await updateDoc(docRef, newData); // * marks attendee as present, and adds 1 point to attendee
+      else{
+        console.log("Attendee is already registered")
+      }
     }
-    else if (currentMode === MODES[2] ){ // if current mode is merch
+
+
+    else if (currentMode === Modes.Merch ){ // if current mode is merch
       if (priorEventPoints - 1 >= 0){ // if attendee has enough points to buy merch
-        console.log("MERCHing ")
         const newData = {
           ...priorData,
           eventpoints: priorEventPoints -= 1
         }
     
         await updateDoc(docRef, newData); // * subtracts 1 point from user
+        console.log("merch purchased!")
       }
       else{
         console.log("not enough points")
@@ -88,7 +92,6 @@ export default function Volunteer(props:any){
       false
     ) )
 
-    const MODES = ["None", "Register", "Merch"]
     enum Modes {
       None = "None",
       Register = "Register",
