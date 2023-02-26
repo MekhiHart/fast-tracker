@@ -13,7 +13,13 @@ export default function SignIn(props:any){
     
         if (docSnap.exists()) { // ! user sign in successful :)
           const data = docSnap.data()
-          setUserData(data)
+
+          // ! Adds id if the userType is an attendee
+          userType === "attendee" ? setUserData({
+            ...data,
+            id: id
+          }) : setUserData(data)
+          
           navigate(userType === "attendee" ? "/Attendee" : "/Volunteer")
 
           console.log("Sign In Successful")
