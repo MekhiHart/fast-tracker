@@ -37,8 +37,5 @@ export default function SignIn(props:any){
             </form>
             <button id="back--button" onClick={() => navigate("/")}>Back</button>
         </>
-        
-
-
     )
 }
