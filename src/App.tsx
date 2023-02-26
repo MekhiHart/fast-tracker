@@ -1,33 +1,47 @@
-import { useState } from 'react'
+import { useState  } from 'react'
+import {BrowserRouter as Router, Route, Switch, Link} from "react-router-dom"
+
+
 import reactLogo from './assets/react.svg'
 import './App.css'
+import HomePage from './Components/HomePage'
+import Volunteer from './Components/Volunteer'
+import Attendee from './Components/Attendee'
+
+/* 
+Notes
+Router encapsulate the entire page
+! Link Component is the one that switches routes
+! Switch Component encapsulates Route Component that is the React components
+! Route Component encapsulates the Component you want to render; needs the "exact path=..." prop that link
+
+*/
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <Router>
+      <div className="App">
+        <h1>Homepage</h1>
+
+        <Switch>
+
+          <Route exact path="/"> 
+            <HomePage/>
+          </Route>
+
+          <Route exact path="/Attendee">
+            <Attendee/>
+          </Route>
+
+          <Route exact path="/Volunteer">
+            <Volunteer/>
+          </Route>
+        </Switch>
+
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
+    </Router>
   )
 }
 
