@@ -18,6 +18,7 @@ export default function Volunteer(props:any){
     const priorData =  docSnap.data()
     let priorEventPoints = priorData!.eventpoints
     let priorAttendanceStatus = priorData!.hasAttended
+    let message;
 
     console.log("Before control flow")
     console.log("Current Mode: ", currentMode)
@@ -30,10 +31,11 @@ export default function Volunteer(props:any){
           eventpoints: priorEventPoints += 1
         }
         await updateDoc(docRef, newData); // * marks attendee as present, and adds 1 point to attendee
-        console.log("attendee registered!")
+        message = "Attendee has been registered"
+        
       }
       else{
-        console.log("Attendee is already registered")
+        message = "Attendee has already been registered"
       }
     }
 
@@ -46,17 +48,16 @@ export default function Volunteer(props:any){
         }
     
         await updateDoc(docRef, newData); // * subtracts 1 point from user
-        console.log("merch purchased!")
+        message = "Attendee has been charged 1 point for merch"
       }
       else{
-        console.log("not enough points")
+        message = "Attendee does not have enough points to buy merch lol brokeass"
       }
     }
-    
-      
+    else message = "An error has occurred"
 
-    // make priorData not undefined
-    // make fetch request here
+    setResponseMessage(message)
+
   }
 
   function turnOnScanner(){
@@ -99,6 +100,7 @@ export default function Volunteer(props:any){
       Merch = "Merch"
     }
     const [currentMode, setCurrentMode] = useState<string>(Modes.None) //type is Modes
+    const [responseMessage, setResponseMessage] = useState<string>("")
     const {userData} = props
     const {firstname,lastname} = userData
 
@@ -114,6 +116,7 @@ export default function Volunteer(props:any){
         <>
             {currentMode === Modes.None && generateModeButtons()}
             {currentMode != Modes.None && <h3>Current Mode: {currentMode}</h3>}
+            {currentMode != Modes.None && <h3>{responseMessage}</h3> }
             {currentMode != Modes.None && <button onClick={() => setCurrentMode(currentMode===Modes.Merch ? Modes.Register : Modes.Merch)}>Change Mode</button>}
             <h1>{firstname} {lastname}</h1>
             {isQrScannerOpen && <button onClick={turnOnScanner}>Scan Again?</button>}
