@@ -67,8 +67,8 @@ function App() {
         <NavBar/>
         <Routes>
           <Route path="/" element={<HomePage handleUserType={handleUserType}/>} />
-          <Route  path="/Attendee" element={<Attendee />}/>
-          <Route path="/Volunteer" element={<Volunteer/>}/>
+          <Route  path="/Attendee" element={<Attendee userData={userData} />}/>
+          <Route path="/Volunteer" element={<Volunteer userData={userData}/>}/>
           <Route path="/SignIn" element={<SignIn 
                                           db={db} 
                                           handleUserId={handleUserId}

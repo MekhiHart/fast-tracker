@@ -1,5 +1,7 @@
-export default function Volunteer(){
+export default function Volunteer(props:any){
+    const {userData} = props
+    const {firstname,lastname} = userData
     return(
-        <h1>Modes</h1>
+        <h1>{firstname} {lastname}</h1>
     )
 }

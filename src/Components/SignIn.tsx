@@ -17,6 +17,7 @@ export default function SignIn(props:any){
           navigate(userType === "attendee" ? "/Attendee" : "/Volunteer")
 
           console.log("Sign In Successful")
+
         } else {// !user sign in unsuccessful :(
           // doc.data() will be undefined in this case
           console.log("Sign In Unsuccesful")
