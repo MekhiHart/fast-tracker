@@ -8,13 +8,22 @@
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
+  "overrides": {
+    "react-qr-reader": {
+      "react": "$react",
+      "react-dom": "$react-dom"
+    }
+  },
   "dependencies": {
+    "@types/react-qr-reader": "^2.1.4",
     "firebase": "^9.17.1",
+    "html5-qrcode": "^2.3.7",
     "qrcode": "^1.5.1",
     "qrcode.react": "^3.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-firebase-hooks": "^5.1.1",
+    "react-qr-reader": "^3.0.0-beta-1",
     "react-router-dom": "^6.8.1"
   },
   "devDependencies": {

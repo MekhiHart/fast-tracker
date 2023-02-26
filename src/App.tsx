@@ -14,6 +14,8 @@ import { getFirestore } from "firebase/firestore";
 import { doc, getDoc } from "firebase/firestore";
 
 
+
+
 // const { getFirestore, Timestamp, FieldValue } = require('firebase-admin/firestore');
 // import { doc, getDoc } from "firebase/firestore";
 
@@ -76,6 +78,8 @@ function App() {
                                           userDataState={[userData,setUserData]}
                                           userType={userType}/>}/>
         </Routes>
+
+        <div id="reader"></div>
     </Router>
   )
 }
