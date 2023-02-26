@@ -69,7 +69,12 @@ function App() {
           <Route path="/" element={<HomePage handleUserType={handleUserType}/>} />
           <Route  path="/Attendee" element={<Attendee />}/>
           <Route path="/Volunteer" element={<Volunteer/>}/>
-          <Route path="/SignIn" element={<SignIn db={db} handleUserId={handleUserId} userId={userId} userDataState={[userData,setUserData]}/>}/>
+          <Route path="/SignIn" element={<SignIn 
+                                          db={db} 
+                                          handleUserId={handleUserId}
+                                          userId={userId} 
+                                          userDataState={[userData,setUserData]}
+                                          userType={userType}/>}/>
         </Routes>
     </Router>
   )
