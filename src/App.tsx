@@ -43,11 +43,18 @@ function App() {
   }
 
   function handleSignIn(event:any, id:string){
-    event.preventDefault()
+    event.preventDefault() // * prevents user submission when user clicks on sign in page
 
     console.log("Submit Clicked")
     console.log("Input SubmittedL ", id)
+    console.log("userId: ", userId)
   }
+
+  function handleUserId(event:any){ // calls whenever user types in on submission box in SignIn component
+    const {value} = event.target
+    setUserId(value)
+  }
+
 
   return (
 
@@ -70,7 +77,7 @@ function App() {
           </Route>
 
           <Route exact path="/SignIn">
-            <SignIn handleSignIn={handleSignIn}/>
+            <SignIn handleSignIn={handleSignIn} handleUserId={handleUserId} userId={userId}/>
           </Route>
         </Switch>
 
