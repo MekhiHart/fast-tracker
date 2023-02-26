@@ -18,15 +18,16 @@ Router encapsulate the entire page
 */
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [currentRoute, setCurrentRoute] = useState("/")
 
   return (
     <Router>
       <div className="App">
         <h1>Homepage</h1>
+        <Link to="/">Home Page</Link>
 
         <Switch>
-
           <Route exact path="/"> 
             <HomePage/>
           </Route>
