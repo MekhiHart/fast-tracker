@@ -1,5 +1,5 @@
 import { useState  } from 'react'
-import {BrowserRouter as Router, Route, Switch, Link, useHistory} from "react-router-dom"
+import {BrowserRouter as Router, Route, Routes, Link} from "react-router-dom"
 
 
 import './App.css'
@@ -43,7 +43,6 @@ function App() {
   const [userType,setUserType] = useState("")
   const [userId, setUserId] = useState("")
   const [userData, setUserData] = useState({})
-  const history = useHistory()
 
   // * Sign in props
   
@@ -63,7 +62,6 @@ function App() {
     if (docSnap.exists()) { // ! user sign in successful :)
       const data = docSnap.data()
       setUserData(userData)
-      // history.push("/Attendee")
       
       console.log("Sign In Successful")
     } else {// !user sign in unsuccessful :(
@@ -83,25 +81,13 @@ function App() {
       <div className="App">
         <NavBar/>
 
-      
-        <Switch>
-          <Route exact path="/"> 
-            <HomePage handleUserType={handleUserType}/>
-          </Route>
-
-          <Route exact path="/Attendee">
-            <Attendee />
-          </Route>
-
-          <Route exact path="/Volunteer">
-            <Volunteer/>
-          </Route>
-
-          <Route exact path="/SignIn">
-            <SignIn handleSignIn={handleSignIn} handleUserId={handleUserId} userId={userId}/>
+        <Routes>
+          <Route path="/" element={<HomePage handleUserType={handleUserType}/>} />
+          <Route  path="/Attendee" element={<Attendee />}/>
+          <Route path="/Volunteer" element={<Volunteer/>}/>
+          <Route path="/SignIn" element={<SignIn handleSignIn={handleSignIn} handleUserId={handleUserId} userId={userId}/>}/>
             
-          </Route>
-        </Switch>
+        </Routes>
 
       </div>
     </Router>
