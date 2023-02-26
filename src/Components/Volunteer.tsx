@@ -3,6 +3,83 @@ import { useEffect, useState } from "react"
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 
 export default function Volunteer(props:any){
+  async function onScanSuccess(id:string) : Promise<void> {
+    // close camera
+    console.log("Pause Camera")
+    scanner.pause()
+    handleQrScanner()
+
+    console.log("Current Mode: ", currentMode)
+
+    // Do different modes here
+
+    const collectionName = "attendees"
+    const docRef = doc(db, collectionName, id); 
+    const docSnap = await getDoc(docRef);
+
+    const priorData =  docSnap.data()
+    let priorEventPoints = priorData!.eventpoints
+    let priorAttendanceStatus = priorData!.hasAttended
+
+    console.log("Before control flow")
+    console.log("Current Mode: ", currentMode)
+
+    if (currentMode === Modes.Register ){ // if current mode is register
+      
+      const newData = {
+        ...priorData,
+        hasAttended:true,
+        eventpoints: priorEventPoints += 1
+      }
+  
+      await updateDoc(docRef, newData); // * marks attendee as present, and adds 1 point to attendee
+    }
+    else if (currentMode === MODES[2] ){ // if current mode is merch
+      if (priorEventPoints - 1 >= 0){ // if attendee has enough points to buy merch
+        console.log("MERCHing ")
+        const newData = {
+          ...priorData,
+          eventpoints: priorEventPoints -= 1
+        }
+    
+        await updateDoc(docRef, newData); // * subtracts 1 point from user
+      }
+      else{
+        console.log("not enough points")
+      }
+    }
+    
+      
+
+    // make priorData not undefined
+    // make fetch request here
+  }
+
+  function turnOnScanner(){
+    scanner.resume()
+    handleQrScanner()
+  }
+
+  function generateModeButtons(){
+    return(
+      <>
+        <button onClick={ () => {
+          console.log("Change to register mode")
+          setCurrentMode("Register")
+          
+
+        }}>Register</button>
+        <button onClick={() => {
+          console.log("Change to merch mode")
+          setCurrentMode("Merch")
+          
+
+        }}>Merch</button>
+      </>
+    )
+  }
+
+
 
     const {handleQrScanner, isQrScannerOpen, db} = props
     const [scanner,setScanner] = useState(    new Html5QrcodeScanner(
@@ -10,54 +87,28 @@ export default function Volunteer(props:any){
       { fps: 10, qrbox: {width: 250, height: 250}},
       false
     ) )
-      
 
-    async function onScanSuccess(id:string) : Promise<void> {
-        // close camera
-        console.log("Pause Camera")
-        scanner.pause()
-        handleQrScanner()
-
-        console.log("Talk to DB")
-
-        const collectionName = "attendees"
-        const docRef = doc(db, collectionName, id); 
-        const docSnap = await getDoc(docRef);
-
-        const priorData = await docSnap.data()
-        // make priorData not undefined
-        const newData = {
-          ...priorData,
-          hasAttended:true,
-          eventpoints: priorData!.eventpoints += 5 
-        }
-
-        await updateDoc(docRef, newData);
-
-        
-
-        
-        // make fetch request here
+    const MODES = ["None", "Register", "Merch"]
+    enum Modes {
+      None = "None",
+      Register = "Register",
+      Merch = "Merch"
     }
-
-    function turnOnScanner(){
-      scanner.resume()
-      handleQrScanner()
-    }
-
-
-
-    useEffect( () =>{
-      scanner.render(onScanSuccess, () => {})
-
-    },[])
-
+    const [currentMode, setCurrentMode] = useState<string>(Modes.None) //type is Modes
     const {userData} = props
     const {firstname,lastname} = userData
+
+    useEffect(() => {
+      if (currentMode != Modes.None) scanner.render(onScanSuccess, () => {})
+    
+    }, [currentMode])
+
+
 
 
     return(
         <>
+            {currentMode === Modes.None && generateModeButtons()}
             <h1>{firstname} {lastname}</h1>
             {isQrScannerOpen && <button onClick={turnOnScanner}>Scan Again?</button>}
         </>

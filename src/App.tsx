@@ -42,15 +42,12 @@ function App() {
   const [userId, setUserId] = useState("")
   const [userData, setUserData] = useState({})
   const [isQrScannerOpen, setIsQrScannerOpen] = useState(false)
-  const [currentMode, setCurrentMode] = useState()
+  // const [currentMode, setCurrentMode] = useState()
   // const [current]
   // let location = useLocation()
 
   // * enum for scanner modes
-  enum Modes{
-    Register,
-    Merch,
-  }
+
   
   // * handleUserId Props
   function handleUserId(event:any){ // calls whenever user types in on submission box in SignIn component
@@ -74,7 +71,8 @@ function App() {
 
   return (
 
-    <Router>
+    <>
+      <Router>
         <NavBar/>
         <Routes>
           <Route path="/" element={<HomePage handleUserType={handleUserType}/>} />
@@ -88,9 +86,10 @@ function App() {
                                           userType={userType}/>}
                                           />
         </Routes>
-
-        <div id="reader"></div>
     </Router>
+    <div id="reader"></div>
+    </>
+
   )
 }
 
