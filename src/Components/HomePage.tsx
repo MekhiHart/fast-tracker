@@ -3,7 +3,7 @@ export default function HomePage(props:any){
     return(
         <div>
             <h1>Hello User!</h1>
-            <h2>Are you </h2>
+            <h2>Are you a.... </h2>
 
             <div className="homepage--choice">
                 <button><Link to="attendee">Attendee</Link></button>
