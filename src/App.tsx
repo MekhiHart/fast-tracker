@@ -9,17 +9,23 @@ import Attendee from './Components/Attendee'
 import NavBar from "./Components/NavBar"
 import SignIn from './Components/SignIn'
 // * Firebase imports
-import firebase, { initializeApp } from "firebase/app"
-import { getFirestore } from 'firebase/firestore'
-import {useCollectionData} from "react-firebase-hooks/firestore"
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
+
+
+// const { getFirestore, Timestamp, FieldValue } = require('firebase-admin/firestore');
+// import { doc, getDoc } from "firebase/firestore";
+
 /* 
 Notes
 Router encapsulate the entire page
 ! Link Component is the one that switches routes
 ! Switch Component encapsulates Route Component that is the React components
 ! Route Component encapsulates the Component you want to render; needs the "exact path=..." prop that link
-
 */
+
+// * firebase global variables
 const firebaseConfig = {
   apiKey: "AIzaSyA6Bo3VrpYbeYNmvJHFxcZbnrm0Ty8En7E",
   authDomain: "fast-tracker-backend.firebaseapp.com",
@@ -42,19 +48,25 @@ function App() {
     setUserType(type)
   }
 
-  function handleSignIn(event:any, id:string){
+  async function handleSignIn(event:any, id:string){
     event.preventDefault() // * prevents user submission when user clicks on sign in page
+    // ! Handle fetch request
 
-    console.log("Submit Clicked")
-    console.log("Input SubmittedL ", id)
-    console.log("userId: ", userId)
+    const docRef = doc(db, "attendees", "8NYbFbt0oLMZqlGTvXN3"); 
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      console.log("Document data:", docSnap.data());
+    } else {
+      // doc.data() will be undefined in this case
+      console.log("No such document!");
+    }
   }
 
   function handleUserId(event:any){ // calls whenever user types in on submission box in SignIn component
     const {value} = event.target
     setUserId(value)
   }
-
 
   return (
 
