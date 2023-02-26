@@ -1,5 +1,5 @@
 import { useState  } from 'react'
-import {BrowserRouter as Router, Route, Routes, Link} from "react-router-dom"
+import {BrowserRouter as Router, Route, Routes, Link,useLocation} from "react-router-dom"
 
 
 import './App.css'
@@ -43,6 +43,8 @@ function App() {
   const [userType,setUserType] = useState("")
   const [userId, setUserId] = useState("")
   const [userData, setUserData] = useState({})
+  // let location = useLocation()
+
 
   // * Sign in props
   
@@ -52,23 +54,7 @@ function App() {
     setUserType(type)
   }
 
-  async function handleSignIn(event:any, id:string){
-    event.preventDefault() // * prevents user submission when user clicks on sign in page
-    // ! Handle fetch request
 
-    const docRef = doc(db, "attendees", id); 
-    const docSnap = await getDoc(docRef);
-    console.log("data: ", docSnap.data())
-    if (docSnap.exists()) { // ! user sign in successful :)
-      const data = docSnap.data()
-      setUserData(userData)
-      
-      console.log("Sign In Successful")
-    } else {// !user sign in unsuccessful :(
-      // doc.data() will be undefined in this case
-      console.log("Sign In Unsuccesful")
-    }
-  }
 
   function handleUserId(event:any){ // calls whenever user types in on submission box in SignIn component
     const {value} = event.target
@@ -78,18 +64,13 @@ function App() {
   return (
 
     <Router>
-      <div className="App">
         <NavBar/>
-
         <Routes>
           <Route path="/" element={<HomePage handleUserType={handleUserType}/>} />
           <Route  path="/Attendee" element={<Attendee />}/>
           <Route path="/Volunteer" element={<Volunteer/>}/>
-          <Route path="/SignIn" element={<SignIn handleSignIn={handleSignIn} handleUserId={handleUserId} userId={userId}/>}/>
-            
+          <Route path="/SignIn" element={<SignIn db={db} handleUserId={handleUserId} userId={userId} userDataState={[userData,setUserData]}/>}/>
         </Routes>
-
-      </div>
     </Router>
   )
 }

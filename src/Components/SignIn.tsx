@@ -1,6 +1,32 @@
+import { useNavigate } from "react-router-dom"
+import { doc, getDoc } from "firebase/firestore";
 export default function SignIn(props:any){
 
-    const {userId, handleUserId, handleSignIn} = props
+    async function handleSignIn(event:any, id:string){
+        event.preventDefault() // * prevents user submission when user clicks on sign in page
+        // ! Handle fetch request
+    
+        // ! need to differentiate between type of user; remove hardcoded "attendees" --> "userType"
+        const docRef = doc(db, "attendees", id); 
+        const docSnap = await getDoc(docRef);
+    
+        console.log("data: ", docSnap.data())
+        if (docSnap.exists()) { // ! user sign in successful :)
+          const data = docSnap.data()
+          setUserData(userData)
+          navigate("/Attendee")
+          // navigate("/Attendee")
+          console.log("Sign In Successful")
+        } else {// !user sign in unsuccessful :(
+          // doc.data() will be undefined in this case
+          console.log("Sign In Unsuccesful")
+        }
+      }
+    const {userId, handleUserId,db, userDataState} = props
+    const [userData,setUserData] = userDataState
+
+    const navigate = useNavigate()
+
     
 
     return(
