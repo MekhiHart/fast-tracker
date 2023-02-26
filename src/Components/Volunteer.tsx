@@ -68,13 +68,13 @@ export default function Volunteer(props:any){
     return(
       <>
         <h3>Modes: </h3>
-        <button onClick={ () => {
+        <button className="mode--button" onClick={ () => {
           console.log("Change to register mode")
           setCurrentMode("Register")
           
 
         }}>Register</button>
-        <button onClick={() => {
+        <button className="mode--button" onClick={() => {
           console.log("Change to merch mode")
           setCurrentMode("Merch")
           
@@ -113,6 +113,8 @@ export default function Volunteer(props:any){
     return(
         <>
             {currentMode === Modes.None && generateModeButtons()}
+            {currentMode != Modes.None && <h3>Current Mode: {currentMode}</h3>}
+            {currentMode != Modes.None && <button onClick={() => setCurrentMode(currentMode===Modes.Merch ? Modes.Register : Modes.Merch)}>Change Mode</button>}
             <h1>{firstname} {lastname}</h1>
             {isQrScannerOpen && <button onClick={turnOnScanner}>Scan Again?</button>}
         </>
