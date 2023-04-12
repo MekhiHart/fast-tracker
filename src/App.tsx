@@ -76,7 +76,15 @@ function App() {
 
 // * Real time updates
 
+  const attendeesRef = collection(db,"attendees")
+  onSnapshot(attendeesRef, (snapshot) =>{
+    let attendees:[Object] 
+    snapshot.docs.forEach((doc) =>{
+      console.log({...doc.data(), id:doc.id })
+      // attendees.push()
+    })
 
+  } )
 
 
   return (
