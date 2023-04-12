@@ -76,15 +76,22 @@ function App() {
 
 // * Real time updates
 
-  const attendeesRef = collection(db,"attendees")
-  onSnapshot(attendeesRef, (snapshot) =>{
-    let attendees:[Object] 
+  const attendeesListRef = collection(db,"attendees")
+  onSnapshot(attendeesListRef, (snapshot) =>{ // * a list of all attendees
+    var attendees: Object[] = []
     snapshot.docs.forEach((doc) =>{
-      console.log({...doc.data(), id:doc.id })
-      // attendees.push()
+      attendees.push({...doc.data(), id:doc.id })
     })
-
   } )
+
+  // const attendeeRef = doc(db, "attendee", userId); 
+  // onSnapshot(attendeeRef, (snapshot) =>{ // * a list of all attendees
+  //   var attendeeStats:any = snapshot.data()
+  //   console.log("Attendee Stats: ", attendeeStats)
+  // } )
+
+
+  // const docSnap = await getDoc(docRef);
 
 
   return (
@@ -94,7 +101,7 @@ function App() {
         <NavBar/>
         <Routes>
           <Route path="/" element={<HomePage handleUserType={handleUserType}/>} />
-          <Route  path="/Attendee" element={<Attendee userData={userData} />}/>
+          <Route  path="/Attendee" element={<Attendee userData={userData} db={db} />}/>
           <Route path="/Volunteer" element={<Volunteer userData={userData} isQrScannerOpen={isQrScannerOpen} handleQrScanner={handleQrScanner} db={db}/>}/>
           <Route path="/SignIn" element={<SignIn 
                                           db={db} 
