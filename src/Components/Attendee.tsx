@@ -11,7 +11,6 @@ export default function Attendee(props:any){
         onSnapshot(attendeeRef, (snapshot:any) =>{ // * a list of all attendees
           var attendeeStats:any = snapshot.data()
           setUserData({...attendeeStats, id:id})
-          console.log("here")
         } )
 
     },[])

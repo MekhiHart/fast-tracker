@@ -72,7 +72,7 @@ function App() {
     setIsQrScannerOpen(prevState => !prevState)
   } //handleQrScanner
 
-// * Real time updates (optional if you want to see all attendees)
+// * Real time updates (optional if you want to see all attendees inside volunteer component)
   // const attendeesListRef = collection(db,"attendees")
  
   // onSnapshot(attendeesListRef, (snapshot) =>{ // * a list of all attendees
