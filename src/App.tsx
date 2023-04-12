@@ -10,7 +10,12 @@ import NavBar from "./Components/NavBar"
 import SignIn from './Components/SignIn'
 // * Firebase imports
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+
+// * Firebase imports for real time collection
+import { getFirestore, doc, collection, query, where, orderBy, getDoc, onSnapshot } from 'firebase/firestore';
+import { useDocumentData, useCollectionData, useCollection, } from 'react-firebase-hooks/firestore';
+
+
 
 
 /* 
@@ -68,6 +73,11 @@ function App() {
     console.log("Handle qrScanner")
     setIsQrScannerOpen(prevState => !prevState)
   } //handleQrScanner
+
+// * Real time updates
+
+
+
 
   return (
 
