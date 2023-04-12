@@ -1,6 +1,5 @@
-import { useState  } from 'react'
-import {BrowserRouter as Router, Route, Routes, Link,useLocation} from "react-router-dom"
-
+import { useEffect, useState  } from 'react'
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom"
 
 import './App.css'
 import HomePage from './Components/HomePage'
@@ -12,8 +11,8 @@ import SignIn from './Components/SignIn'
 import { initializeApp } from "firebase/app";
 
 // * Firebase imports for real time collection
-import { getFirestore, doc, collection, query, where, orderBy, getDoc, onSnapshot } from 'firebase/firestore';
-import { useDocumentData, useCollectionData, useCollection, } from 'react-firebase-hooks/firestore';
+import { getFirestore, collection,  onSnapshot } from 'firebase/firestore';
+// import { useDocumentData, useCollectionData, useCollection, } from 'react-firebase-hooks/firestore';
 
 
 
@@ -70,28 +69,20 @@ function App() {
 
   // * Volunteer Component Props
   function handleQrScanner(){
-    console.log("Handle qrScanner")
     setIsQrScannerOpen(prevState => !prevState)
   } //handleQrScanner
 
-// * Real time updates
-
-  const attendeesListRef = collection(db,"attendees")
-  onSnapshot(attendeesListRef, (snapshot) =>{ // * a list of all attendees
-    var attendees: Object[] = []
-    snapshot.docs.forEach((doc) =>{
-      attendees.push({...doc.data(), id:doc.id })
-    })
-  } )
-
-  // const attendeeRef = doc(db, "attendee", userId); 
-  // onSnapshot(attendeeRef, (snapshot) =>{ // * a list of all attendees
-  //   var attendeeStats:any = snapshot.data()
-  //   console.log("Attendee Stats: ", attendeeStats)
+// * Real time updates (optional if you want to see all attendees)
+  // const attendeesListRef = collection(db,"attendees")
+ 
+  // onSnapshot(attendeesListRef, (snapshot) =>{ // * a list of all attendees
+  //   var attendees: Object[] = []
+  //   snapshot.docs.forEach((doc) =>{
+  //     attendees.push({...doc.data(), id:doc.id })
+  //   })
   // } )
 
 
-  // const docSnap = await getDoc(docRef);
 
 
   return (
@@ -101,7 +92,7 @@ function App() {
         <NavBar/>
         <Routes>
           <Route path="/" element={<HomePage handleUserType={handleUserType}/>} />
-          <Route  path="/Attendee" element={<Attendee userData={userData} db={db} />}/>
+          <Route  path="/Attendee" element={<Attendee userData={userData} db={db} setUserData={setUserData}  />}/>
           <Route path="/Volunteer" element={<Volunteer userData={userData} isQrScannerOpen={isQrScannerOpen} handleQrScanner={handleQrScanner} db={db}/>}/>
           <Route path="/SignIn" element={<SignIn 
                                           db={db} 

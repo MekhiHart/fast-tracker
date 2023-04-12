@@ -67,3 +67,9 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.attendee--status{
+  background-color: red;
+  padding:10px;
+  border-radius: 20px;
+}

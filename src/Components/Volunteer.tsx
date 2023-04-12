@@ -5,11 +5,8 @@ import { doc, getDoc, updateDoc } from "firebase/firestore";
 export default function Volunteer(props:any){
   async function onScanSuccess(id:string) : Promise<void> {
     // close camera
-    console.log("Pause Camera")
     scanner.pause()
     handleQrScanner()
-
-    console.log("Current Mode: ", currentMode)
 
     const collectionName = "attendees"
     const docRef = doc(db, collectionName, id); 
@@ -20,10 +17,7 @@ export default function Volunteer(props:any){
     let priorAttendanceStatus = priorData!.hasAttended
     let message;
 
-    console.log("Before control flow")
-    console.log("Current Mode: ", currentMode)
-
-    if (currentMode === Modes.Register ){ // if current mode is register
+    if (currentMode === Modes.Register ){ //! if current mode is register
       if (priorAttendanceStatus === false){
         const newData = {
           ...priorData,
@@ -70,13 +64,11 @@ export default function Volunteer(props:any){
       <>
         <h3>Modes: </h3>
         <button className="mode--button" onClick={ () => {
-          console.log("Change to register mode")
           setCurrentMode("Register")
           
 
         }}>Register</button>
         <button className="mode--button" onClick={() => {
-          console.log("Change to merch mode")
           setCurrentMode("Merch")
           
 
