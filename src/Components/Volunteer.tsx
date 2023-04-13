@@ -49,7 +49,6 @@ export default function Volunteer(props:any){
       }
     }
     else message = "An error has occurred"
-
     setResponseMessage(message)
 
   }
@@ -65,14 +64,12 @@ export default function Volunteer(props:any){
         <h3>Modes: </h3>
         <button className="mode--button" onClick={ () => {
           setCurrentMode("Register")
-          setResponseMessage("")
-          
+
 
         }}>Register</button>
         <button className="mode--button" onClick={() => {
           setCurrentMode("Merch")
-          setResponseMessage("")
-          
+
 
         }}>Merch</button>
       </>
@@ -81,7 +78,7 @@ export default function Volunteer(props:any){
 
 
 
-    const {handleQrScanner, isQrScannerOpen, db} = props
+    const {handleQrScanner, isQrScannerOpen, db, setIsQrScannerOpen} = props
     const [scanner,setScanner] = useState(    new Html5QrcodeScanner(
       "reader",
       { fps: 10, qrbox: {width: 250, height: 250}},
@@ -111,8 +108,12 @@ export default function Volunteer(props:any){
             {currentMode === Modes.None && generateModeButtons()}
             {currentMode != Modes.None && <h3>Current Mode: {currentMode}</h3>}
             {currentMode != Modes.None && <h3>{responseMessage}</h3> }
-            {currentMode != Modes.None && <button onClick={() => setCurrentMode(currentMode===Modes.Merch ? Modes.Register : Modes.Merch)}>Change Mode</button>}
-            <h1>{firstname} {lastname}</h1>
+            {currentMode != Modes.None && <button onClick={() => {
+              setIsQrScannerOpen(false)
+              setCurrentMode(currentMode===Modes.Merch ? Modes.Register : Modes.Merch)
+              setResponseMessage("")
+              
+            }}>Change Mode</button>}
             {isQrScannerOpen && <button onClick={() => {
               turnOnScanner()
               setResponseMessage("")

@@ -93,7 +93,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage handleUserType={handleUserType}/>} />
           <Route  path="/Attendee" element={<Attendee userData={userData} db={db} setUserData={setUserData}  />}/>
-          <Route path="/Volunteer" element={<Volunteer userData={userData} isQrScannerOpen={isQrScannerOpen} handleQrScanner={handleQrScanner} db={db}/>}/>
+          <Route path="/Volunteer" element={<Volunteer userData={userData} isQrScannerOpen={isQrScannerOpen} handleQrScanner={handleQrScanner} db={db} setIsQrScannerOpen={setIsQrScannerOpen}/>}/>
           <Route path="/SignIn" element={<SignIn 
                                           db={db} 
                                           handleUserId={handleUserId}
