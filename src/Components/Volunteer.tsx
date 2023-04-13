@@ -113,7 +113,10 @@ export default function Volunteer(props:any){
             {currentMode != Modes.None && <h3>{responseMessage}</h3> }
             {currentMode != Modes.None && <button onClick={() => setCurrentMode(currentMode===Modes.Merch ? Modes.Register : Modes.Merch)}>Change Mode</button>}
             <h1>{firstname} {lastname}</h1>
-            {isQrScannerOpen && <button onClick={turnOnScanner}>Scan Again?</button>}
+            {isQrScannerOpen && <button onClick={() => {
+              turnOnScanner()
+              setResponseMessage("")
+            }}>Scan Again?</button>}
         </>
     )
 }
