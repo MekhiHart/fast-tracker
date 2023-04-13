@@ -45,7 +45,7 @@ export default function Volunteer(props:any){
         message = "Attendee has been charged 1 point for merch"
       }
       else{
-        message = "Attendee does not have enough points to buy merch lol brokeass"
+        message = "Attendee does not have enough points to buy merch"
       }
     }
     else message = "An error has occurred"
@@ -65,11 +65,13 @@ export default function Volunteer(props:any){
         <h3>Modes: </h3>
         <button className="mode--button" onClick={ () => {
           setCurrentMode("Register")
+          setResponseMessage("")
           
 
         }}>Register</button>
         <button className="mode--button" onClick={() => {
           setCurrentMode("Merch")
+          setResponseMessage("")
           
 
         }}>Merch</button>
