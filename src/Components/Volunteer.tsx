@@ -92,8 +92,7 @@ export default function Volunteer(props:any){
     }
     const [currentMode, setCurrentMode] = useState<string>(Modes.None) //type is Modes
     const [responseMessage, setResponseMessage] = useState<string>("")
-    const {userData} = props
-    const {firstname,lastname} = userData
+    
 
     useEffect(() => {
       if (currentMode != Modes.None) scanner.render(onScanSuccess, () => {})
