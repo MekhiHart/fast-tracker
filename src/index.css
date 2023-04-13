@@ -73,3 +73,9 @@ button:focus-visible {
   padding:10px;
   border-radius: 20px;
 }
+
+.qr--code{
+  margin-top: 35px;
+  background-color: white;
+  padding:30px
+}
