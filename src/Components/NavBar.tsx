@@ -1,9 +1,8 @@
-import { Link } from "react-router-dom"
+export default function NavBar(props:any){
 
-export default function NavBar(){
     return(
         <div className="navbar">
-            <h1 >Fast Tracker</h1>
+            <h1>{props.navBarTitle}</h1>
         </div>
         
     )

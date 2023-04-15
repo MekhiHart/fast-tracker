@@ -50,9 +50,9 @@ function App() {
   // const [current]
   // let location = useLocation()
 
-  // * enum for scanner modes
+  // * added features for Signify Interview
+  const [navBarTitle, setNavBarTitle] = useState("Fast Tracker")
 
-  
   // * handleUserId Props
   function handleUserId(event:any){ // calls whenever user types in on submission box in SignIn component
     const {value} = event.target
@@ -83,23 +83,23 @@ function App() {
   // } )
 
 
-
-
   return (
 
     <>
       <Router>
-        <NavBar/>
+        <NavBar navBarTitle={navBarTitle}/>
         <Routes>
           <Route path="/" element={<HomePage handleUserType={handleUserType}/>} />
           <Route  path="/Attendee" element={<Attendee userData={userData} db={db} setUserData={setUserData}  />}/>
           <Route path="/Volunteer" element={<Volunteer userData={userData} isQrScannerOpen={isQrScannerOpen} handleQrScanner={handleQrScanner} db={db} setIsQrScannerOpen={setIsQrScannerOpen}/>}/>
           <Route path="/SignIn" element={<SignIn 
                                           db={db} 
+                                          setNavBarTitle={setNavBarTitle}
                                           handleUserId={handleUserId}
                                           userId={userId} 
                                           setUserData={setUserData}
                                           userType={userType}/>}
+                  
                                           />
         </Routes>
     </Router>

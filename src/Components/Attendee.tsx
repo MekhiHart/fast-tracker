@@ -20,7 +20,6 @@ export default function Attendee(props:any){
     )
     return(
         <>
-            <h2>Name: <u>{firstname} {lastname}</u></h2>
            {userData.hasAttended && <h2>Event Points: {eventpoints}</h2>}
             {!userData.hasAttended && registerStatus }
             <div id="qr-code"/>
