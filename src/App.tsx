@@ -51,7 +51,7 @@ function App() {
   // let location = useLocation()
 
   // * added features for Signify Interview
-  const [navBarTitle, setNavBarTitle] = useState("Fast Tracker")
+  const [navBarTitle, setNavBarTitle] = useState(<h1>Fast Tracker</h1>)
 
   // * handleUserId Props
   function handleUserId(event:any){ // calls whenever user types in on submission box in SignIn component
