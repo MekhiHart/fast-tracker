@@ -64,8 +64,8 @@ export default function Volunteer(props:any){
         await updateDoc(docRef, newData); // * subtracts 1 point from user
         message = "Attendee has been charged 1 point for merch"
       }
-      else{
-        message = "Attendee does not have enough points to buy merch"
+      else{ // * not enough merch points
+        message = "Transaction could not be completed due to lack of points"
       }
     }
     else message = "An error has occurred"
