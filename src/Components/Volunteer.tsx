@@ -131,7 +131,7 @@ export default function Volunteer(props:any){
     return(
         <>
             {currentMode === Modes.None && generateModeButtons()}
-            {currentMode != Modes.None && <h3>Current Mode: {currentMode}</h3>}
+            {currentMode != Modes.None && <h3>Current Mode: <u>{currentMode}</u></h3>}
             {currentMode != Modes.None && <h3>{responseMessage}</h3> }
             {currentMode != Modes.None && <button onClick={() => {
               setIsQrScannerOpen(false)
