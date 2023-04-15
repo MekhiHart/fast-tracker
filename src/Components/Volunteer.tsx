@@ -2,25 +2,7 @@ import { Html5QrcodeScanner } from "html5-qrcode"
 import { useEffect, useState } from "react"
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 
-enum Html5QrcodeSupportedFormats {
-  QR_CODE = 0,
-  AZTEC,
-  CODABAR,
-  CODE_39,
-  CODE_93,
-  CODE_128,
-  DATA_MATRIX,
-  MAXICODE,
-  ITF,
-  EAN_13,
-  EAN_8,
-  PDF_417,
-  RSS_14,
-  RSS_EXPANDED,
-  UPC_A,
-  UPC_E,
-  UPC_EAN_EXTENSION,
-}
+
 
 export default function Volunteer(props:any){
   async function onScanSuccess(id:string) : Promise<void> {
@@ -97,16 +79,15 @@ export default function Volunteer(props:any){
   }
 
 
-
+    const scannerCofig = { fps: 10, qrbox: {width: 250, height: 250}, facingMode:{ exact: "environment"}}
     const {handleQrScanner, isQrScannerOpen, db, setIsQrScannerOpen} = props
     const [scanner,setScanner] = useState(    new Html5QrcodeScanner(
       "reader",
-      { fps: 10, qrbox: {width: 250, height: 250},  formatsToSupport: [ Html5QrcodeSupportedFormats.QR_CODE ]},
+      scannerCofig,
       false
     ) )
 
-    
-
+  
     // scanner.
     // scanner.start({ facingMode: "user" }, config, onScanSuccess);
 
