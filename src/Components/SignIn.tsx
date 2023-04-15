@@ -19,7 +19,7 @@ export default function SignIn(props:any){
             ...data,
             id: id
           }) : setUserData(data)
-          props.setNavBarTitle("User Name: " + data.firstname + " " + data.lastname)
+          props.setNavBarTitle(data.firstname + " " + data.lastname)
           navigate(userType === "attendee" ? "/Attendee" : "/Volunteer")
           
         } else {// !user sign in unsuccessful :(
