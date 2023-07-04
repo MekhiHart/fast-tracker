@@ -1,4 +1,18 @@
-# Project Proposal
+# What is Fast Tracker
+Fast Tracker is a project submitted for a 24 hour Google Sponsored hackathon that won Best Google Cloud Hack while competing as a solo competitor. The main function of this web application is to streamline the process of taking attendance for events through the use of QR Codes. This tool is significant for organizations that require attendees to check-in to confirm their attendance in an efficient matter especially in a high populated events. Example use case for this is for ticketed events where only authorized attendees are allowed to enter the venue, while also calculating the number of authorized attendees that decided to show up to track popularity of the event. Fast Tracker can be used in this situation to give attendees a QR code and quickly scan their QR code using Fast Tracker to instantly record their attendance in the database, while also refusing unauthorized attendees.
+
+## Tech Stack:
+Front-End: React and TypeScript
+Back-End: Cloud Firestore
+External Libraries: QR Generator and QR scanner
+
+## Setting up
+- Clone the repo in a new local repo
+- Run npm i
+- Run npm start
+
+
+## Project Proposal
 
 <aside>
 📈 Stakeholders
