@@ -5,7 +5,7 @@
 
 </aside>
 
-The BeachHacks team; specifically the logistics/operations team who want to analyze the data later, and for Committee Directors who want to have 100% confidence on their data to improve upon the next Hackathon
+The BeachHacks Organization; specifically the logistics/operations team who want to analyze the data later, and for Committee Directors who want to have 100% confidence on their data to improve upon the next Hackathon
 
 <aside>
 🔑 Problems Being Solved
@@ -23,6 +23,7 @@ The BeachHacks team; specifically the logistics/operations team who want to anal
 </aside>
 
 - Problematic for the data during its generation phase of the data lifecycle when using spreadsheet due potential human errors
+- Attendance takers are working long hours that could potentially make mistakes and harm the integrity of data inputted
 
 <aside>
 ⚙ Problems for data generation using spreadsheet
