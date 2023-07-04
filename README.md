@@ -65,6 +65,7 @@ The BeachHacks Organization; specifically the logistics/operations team who want
 
 </aside>
 
+
 | Use Case 1  | Login to Account  |
 | --- | --- |
 | Actors | BeachHacks Attendee |
@@ -78,6 +79,8 @@ The BeachHacks Organization; specifically the logistics/operations team who want
 | Error-Condition | Invalid Key inputted
 Attendee is already logged in |
 | Non-Functional Requirements | User interface must be user-friendly |
+
+
 
 | Use Case 2 | Register attendee for event |
 | --- | --- |
@@ -100,6 +103,7 @@ Attendee is already logged in |
 💡 Additional Use Cases
 
 </aside>
+
 
 | Use Case 2 (MODIFIED) | Register attendee for event |
 | --- | --- |
@@ -126,6 +130,8 @@ Attendee is already logged in |
 🔑 Final Use Cases
 
 </aside>
+
+
 
 | Use Case 1  | Login to Account  |
 | --- | --- |
