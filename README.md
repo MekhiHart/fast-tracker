@@ -8,10 +8,16 @@ Fast Tracker is a project submitted for a 24 hour Google Sponsored hackathon tha
 
 ## Setting up
 - Clone the repo in a new local repo
-- - Here
-- Run npm i
-- Run npm start
+ - git init
+ - git remote add origin <clone url link>
+ - git fetch
+ - git pull origin main
 
+- Installing and Running
+    - npm i
+    - npm run dev
+    - run application from local host and you're good to go!
+    - See YouTube video from my portfolio to learn more, registering users is not a feature because it assumes the attendee is already propagated to the database
 
 ## Project Proposal
 
