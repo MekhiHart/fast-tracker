@@ -8,10 +8,10 @@ Fast Tracker is a project submitted for a 24 hour Google Sponsored hackathon tha
 
 ## Setting up
 - Clone the repo in a new local repo
- - git init
- - git remote add origin <clone url link>
- - git fetch
- - git pull origin main
+  - git init
+  - git remote add origin <clone url link>
+  - git fetch
+  - git pull origin main
 
 - Installing and Running
     - npm i
