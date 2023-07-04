@@ -8,6 +8,7 @@ Fast Tracker is a project submitted for a 24 hour Google Sponsored hackathon tha
 
 ## Setting up
 - Clone the repo in a new local repo
+- - Here
 - Run npm i
 - Run npm start
 
