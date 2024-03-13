@@ -69,9 +69,18 @@ button:focus-visible {
 }
 
 .attendee--status{
-  background-color: red;
-  padding:10px;
+  padding:15px;
   border-radius: 20px;
+}
+
+.red{
+  color: white;
+  background-color: #da2c38;
+}
+
+.green{
+  color: black;
+  background-color: #96e072;
 }
 
 .qr--code{
